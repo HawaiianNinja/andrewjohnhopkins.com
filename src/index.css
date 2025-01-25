@@ -1,0 +1,305 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  body {
+    background-color: var(--background);
+    color: var(--neon-text);
+    font-family: 'Courier New', Courier, monospace;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease;
+  }
+
+  @keyframes flicker {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+      opacity: 1;
+    }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes glow {
+    0% {
+      filter: brightness(100%) blur(0.5px);
+    }
+    50% {
+      filter: brightness(120%) blur(1px);
+    }
+    100% {
+      filter: brightness(100%) blur(0.5px);
+    }
+  }
+}
+
+@layer components {
+  .retro-panel {
+    @apply bg-black border-[3px] rounded-lg p-6;
+    border-color: var(--neon-primary);
+    background: linear-gradient(135deg, var(--background) 0%, color-mix(in srgb, var(--background) 80%, var(--neon-primary)) 100%);
+    box-shadow: 
+      0 0 10px color-mix(in srgb, var(--neon-primary) 30%, transparent),
+      0 0 20px color-mix(in srgb, var(--neon-primary) 20%, transparent),
+      0 0 30px color-mix(in srgb, var(--neon-primary) 10%, transparent),
+      inset 0 0 30px color-mix(in srgb, var(--neon-primary) 10%, transparent);
+    animation: glow 4s ease-in-out infinite;
+  }
+
+  .retro-screen {
+    @apply border-2 rounded p-4;
+    border-color: var(--neon-secondary);
+    background: var(--screen);
+    box-shadow: 
+      0 0 10px color-mix(in srgb, var(--neon-secondary) 30%, transparent),
+      0 0 20px color-mix(in srgb, var(--neon-secondary) 20%, transparent),
+      inset 0 0 15px color-mix(in srgb, var(--neon-secondary) 20%, transparent);
+    background: linear-gradient(180deg, 
+      var(--screen) 0%,
+      color-mix(in srgb, var(--screen) 80%, var(--neon-secondary)) 50%,
+      var(--screen) 100%
+    );
+  }
+
+  .retro-text {
+    @apply font-mono tracking-wider;
+    color: var(--neon-text);
+    text-shadow: 
+      0 0 5px color-mix(in srgb, var(--neon-text) 70%, transparent),
+      0 0 10px color-mix(in srgb, var(--neon-text) 50%, transparent),
+      0 0 15px color-mix(in srgb, var(--neon-text) 30%, transparent);
+    animation: flicker 4s linear infinite;
+  }
+
+  .retro-text-pink {
+    @apply font-mono tracking-wider;
+    color: var(--neon-primary);
+    text-shadow: 
+      0 0 5px color-mix(in srgb, var(--neon-primary) 70%, transparent),
+      0 0 10px color-mix(in srgb, var(--neon-primary) 50%, transparent),
+      0 0 15px color-mix(in srgb, var(--neon-primary) 30%, transparent);
+    animation: flicker 3s linear infinite;
+  }
+
+  .retro-text-cyan {
+    @apply font-mono tracking-wider;
+    color: var(--neon-secondary);
+    text-shadow: 
+      0 0 5px color-mix(in srgb, var(--neon-secondary) 70%, transparent),
+      0 0 10px color-mix(in srgb, var(--neon-secondary) 50%, transparent),
+      0 0 15px color-mix(in srgb, var(--neon-secondary) 30%, transparent);
+    animation: flicker 5s linear infinite;
+  }
+
+  .retro-button {
+    @apply px-4 py-2 bg-black border-2 font-mono tracking-wider transition-all duration-200;
+    border-color: var(--neon-primary);
+    color: var(--neon-primary);
+    background-color: color-mix(in srgb, var(--background) 95%, var(--neon-primary));
+    box-shadow: 
+      0 0 10px color-mix(in srgb, var(--neon-primary) 30%, transparent),
+      0 0 20px color-mix(in srgb, var(--neon-primary) 20%, transparent),
+      inset 0 0 10px color-mix(in srgb, var(--neon-primary) 10%, transparent);
+  }
+
+  .retro-button:hover {
+    background-color: color-mix(in srgb, var(--background) 80%, var(--neon-primary));
+  }
+
+  /* Theme Switcher Styles */
+  .theme-switcher {
+    @apply fixed top-4 right-4 z-50;
+  }
+
+  .theme-option {
+    @apply px-3 py-1 mb-2 text-sm rounded cursor-pointer transition-all duration-200;
+    border: 2px solid var(--neon-primary);
+    background-color: color-mix(in srgb, var(--background) 95%, var(--neon-primary));
+    color: var(--neon-primary);
+  }
+
+  .theme-option:hover {
+    background-color: color-mix(in srgb, var(--background) 80%, var(--neon-primary));
+  }
+
+  .theme-option.active {
+    background-color: var(--neon-primary);
+    color: var(--background);
+  }
+
+  .scanline {
+    @apply pointer-events-none fixed inset-0 z-50;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.05) 0.5%,
+      transparent 1%
+    );
+    animation: scanline 8s linear infinite;
+    opacity: 0.3;
+  }
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+}
+.theme-cyberpunk {
+  /* Default Cyberpunk Theme */
+  --theme-name: 'cyberpunk';
+  --neon-primary: #ff00ff;
+  --neon-secondary: #0ff0ff;
+  --neon-text: #0fff0f;
+  --neon-accent: #b000ff;
+  --background: #000000;
+  --screen: #000022;
+}
+
+/* Synthwave Theme */
+.theme-synthwave {
+  --theme-name: 'synthwave';
+  --neon-primary: #ff2b9d;
+  --neon-secondary: #7b00ff;
+  --neon-text: #ff8a2b;
+  --neon-accent: #00fff5;
+  --background: #1a0933;
+  --screen: #1f0f3d;
+}
+
+/* Vaporwave Theme */
+.theme-vaporwave {
+  --theme-name: 'vaporwave';
+  --neon-primary: #ff71ce;
+  --neon-secondary: #01cdfe;
+  --neon-text: #05ffa1;
+  --neon-accent: #b967ff;
+  --background: #1d0231;
+  --screen: #2a0f45;
+}
+
+/* Retro Computer Theme */
+.theme-retro-computer {
+  --theme-name: 'retro-computer';
+  --neon-primary: #00ff00;
+  --neon-secondary: #00aa00;
+  --neon-text: #33ff33;
+  --neon-accent: #00ff33;
+  --background: #001100;
+  --screen: #002200;
+}
+
+/* Matrix Theme */
+.theme-matrix {
+  --theme-name: 'matrix';
+  --neon-primary: #00ff41;
+  --neon-secondary: #008f11;
+  --neon-text: #03ff03;
+  --neon-accent: #0d5c0d;
+  --background: #000801;
+  --screen: #001402;
+}
+
+/* Commodore 64 Theme */
+.theme-commodore {
+  --theme-name: 'commodore';
+  --neon-primary: #7c70da;
+  --neon-secondary: #4f46a8;
+  --neon-text: #8f87ff;
+  --neon-accent: #6c64c8;
+  --background: #403e7e;
+  --screen: #4846a5;
+}
+
+/* Amber Terminal Theme */
+.theme-amber {
+  --theme-name: 'amber';
+  --neon-primary: #ffb000;
+  --neon-secondary: #ff9d00;
+  --neon-text: #ffc125;
+  --neon-accent: #ffae42;
+  --background: #1a1000;
+  --screen: #241700;
+}
+
+/* IBM PC Theme */
+.theme-ibm {
+  --theme-name: 'ibm';
+  --neon-primary: #ffffff;
+  --neon-secondary: #aaaaaa;
+  --neon-text: #cccccc;
+  --neon-accent: #888888;
+  --background: #000088;
+  --screen: #000066;
+}
+
+/* Apple II Theme */
+.theme-apple2 {
+  --theme-name: 'apple2';
+  --neon-primary: #33ff33;
+  --neon-secondary: #1fad1f;
+  --neon-text: #40ff40;
+  --neon-accent: #2fff2f;
+  --background: #111111;
+  --screen: #222222;
+}
+
+/* ZX Spectrum Theme */
+.theme-spectrum {
+  --theme-name: 'spectrum';
+  --neon-primary: #ff0000;
+  --neon-secondary: #0000ff;
+  --neon-text: #ffff00;
+  --neon-accent: #ff00ff;
+  --background: #000000;
+  --screen: #111111;
+}
+
+/* Atari ST Theme */
+.theme-atari {
+  --theme-name: 'atari';
+  --neon-primary: #c7f0d8;
+  --neon-secondary: #43b14b;
+  --neon-text: #e8fff1;
+  --neon-accent: #70e37c;
+  --background: #152c1a;
+  --screen: #1d3b24;
+}
+
+/* DOS Theme */
+.theme-dos {
+  --theme-name: 'dos';
+  --neon-primary: #ffb253;
+  --neon-secondary: #ff9020;
+  --neon-text: #ffc78e;
+  --neon-accent: #ffa040;
+  --background: #000000;
+  --screen: #1a1a1a;
+}
+
+/* Gameboy Theme */
+.theme-gameboy {
+  --theme-name: 'gameboy';
+  --neon-primary: #9bbc0f;
+  --neon-secondary: #8bac0f;
+  --neon-text: #306230;
+  --neon-accent: #0f380f;
+  --background: #0f380f;
+  --screen: #1f482f;
+}
+
+/* Vectrex Theme */
+.theme-vectrex {
+  --theme-name: 'vectrex';
+  --neon-primary: #00ff00;
+  --neon-secondary: #00dd00;
+  --neon-text: #11ff11;
+  --neon-accent: #22ff22;
+  --background: #111111;
+  --screen: #222222;
+}

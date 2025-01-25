@@ -1,0 +1,124 @@
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #0ff0ff;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: all 0.1s ease;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #ff00ff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff00ff;
+}
+
+.theme-switcher {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.theme-menu {
+  position: relative;
+}
+
+.theme-toggle {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--neon-primary);
+  color: var(--neon-primary);
+  padding: 0.5rem 1rem;
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 4px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  min-width: 150px;
+  justify-content: space-between;
+}
+
+.theme-toggle:hover {
+  box-shadow: 0 0 15px var(--neon-primary);
+  text-shadow: 0 0 5px var(--neon-primary);
+}
+
+.theme-icon {
+  font-size: 0.8em;
+  transition: transform 0.3s ease;
+}
+
+.theme-options {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid var(--neon-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  visibility: hidden;
+  height: 0;
+}
+
+.theme-menu:hover .theme-options,
+.theme-menu:focus-within .theme-options {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+  height: auto;
+}
+
+.theme-menu:hover .theme-icon,
+.theme-menu:focus-within .theme-icon {
+  transform: rotate(180deg);
+}
+
+.theme-option {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  color: var(--neon-secondary);
+  font-family: "VT323", monospace;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.theme-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neon-primary);
+  text-shadow: 0 0 5px var(--neon-primary);
+}
+
+.theme-option.active {
+  background: var(--neon-primary);
+  color: black;
+  font-weight: bold;
+} 
