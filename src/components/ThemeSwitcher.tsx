@@ -18,7 +18,8 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ currentTheme, onTh
                      [box-shadow:_0_0_10px_var(--primary),_inset_0_0_10px_var(--primary)]
                      hover:border-secondary hover:[box-shadow:_0_0_15px_var(--secondary),_inset_0_0_15px_var(--secondary)]
                      transition-all duration-300
-                     flex items-center gap-2"
+                     flex items-center gap-2
+                     backdrop-blur-md bg-black/50"
           aria-label="Toggle theme menu"
         >
           <span className="retro-text-pink hover:retro-text-cyan transition-colors tracking-[0.2em] font-bold">
