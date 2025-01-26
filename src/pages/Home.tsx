@@ -6,7 +6,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6">
       <h1 className="text-6xl font-bold mb-12 retro-text-pink tracking-[0.2em] text-center">
-        ANDREW's DASHBOARD
+        ANDREW'S DASHBOARD
         <br />
         <span className="retro-text-cyan">ALPHA</span>
       </h1>

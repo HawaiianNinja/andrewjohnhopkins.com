@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Theme } from "./types";
 import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import Weather from "./pages/Weather";
-import Map from "./pages/Map";
+
+const Home = React.lazy(() => import("./pages/Home"));
+const Weather = React.lazy(() => import("./pages/Weather"));
+const Map = React.lazy(() => import("./pages/Map"));
 
 function App() {
   const [theme, setTheme] = useState<Theme>("cyberpunk");
@@ -18,9 +19,21 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout theme={theme} onThemeChange={setTheme} />}>
-          <Route index element={<Home />} />
-          <Route path="weather" element={<Weather />} />
-          <Route path="map" element={<Map />} />
+          <Route index element={
+            <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+              <Home />
+            </Suspense>
+          } />
+          <Route path="weather" element={
+            <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+              <Weather />
+            </Suspense>
+          } />
+          <Route path="map" element={
+            <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+              <Map />
+            </Suspense>
+          } />
         </Route>
       </Routes>
     </BrowserRouter>
