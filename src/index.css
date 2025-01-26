@@ -149,6 +149,15 @@
       transform: translateY(100vh);
     }
   }
+
+  .retro-map-stroke {
+    stroke: var(--neon-primary);
+    filter: 
+      drop-shadow(0 0 2px color-mix(in srgb, var(--neon-primary) 70%, transparent))
+      drop-shadow(0 0 4px color-mix(in srgb, var(--neon-primary) 50%, transparent))
+      drop-shadow(0 0 6 px color-mix(in srgb, var(--neon-primary) 30%, transparent));
+    animation: flicker 4s linear infinite;
+  }
 }
 .theme-cyberpunk {
   /* Default Cyberpunk Theme */
