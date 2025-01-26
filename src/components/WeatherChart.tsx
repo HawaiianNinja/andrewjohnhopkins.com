@@ -44,7 +44,7 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
   const formattedData = useMemo(() => {
     // Create a map of all timestamps
     const timestampMap = new Map<string, FormattedDataPoint>();
-    
+
     // Process data from each room
     data.forEach(roomData => {
       roomData.data.forEach(reading => {
@@ -64,17 +64,17 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
 
   const domain = useMemo(() => {
     if (data.length === 0) return [0, 100];
-    const values = data.flatMap(room => 
+    const values = data.flatMap(room =>
       room.data.map(d => parseFloat(d.value))
     );
     const min = Math.min(...values);
     const max = Math.max(...values);
-    const padding = (max - min) * 0.1;
+    const padding = (max - min) * 0.01;
     return [Math.max(0, Math.floor(min - padding)), Math.ceil(max + padding)];
   }, [data]);
 
   const timeZone = useMemo(() => Intl.DateTimeFormat().resolvedOptions().timeZone, []);
-  const timeFormatter = useMemo(() => (time: Date) => 
+  const timeFormatter = useMemo(() => (time: Date) =>
     format(toZonedTime(time, timeZone), "HH:mm"), [timeZone]);
 
   const colors = ["#ff0099", "#00ff99", "#0099ff", "#ff9900", "#9900ff"];
