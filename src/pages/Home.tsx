@@ -16,7 +16,7 @@ const Home: React.FC = () => {
           >
             <div className="flex flex-col items-center space-y-4">
               <ThermometerSun size={48} className="retro-text-pink group-hover:retro-text-cyan transition-colors" />
-              <h2 className="text-2xl font-bold tracking-[0.2em] retro-text-pink group-hover:retro-text-cyan transition-colors">
+              <h2 className="text-2xl font-bold tracking-[0.2em] retro-text-pink group-hover:retro-text-cyan transition-colors whitespace-nowrap">
                 WEATHER STATION
               </h2>
               <p className="text-center opacity-80 group-hover:retro-text-cyan transition-colors">
@@ -34,7 +34,7 @@ const Home: React.FC = () => {
           >
             <div className="flex flex-col items-center space-y-4">
               <Map size={48} className="retro-text-pink group-hover:retro-text-cyan transition-colors" />
-              <h2 className="text-2xl font-bold tracking-[0.2em] retro-text-pink group-hover:retro-text-cyan transition-colors">
+              <h2 className="text-2xl font-bold tracking-[0.2em] retro-text-pink group-hover:retro-text-cyan transition-colors whitespace-nowrap">
                 NETWORK MAP
               </h2>
               <p className="text-center opacity-80 group-hover:retro-text-cyan transition-colors">
