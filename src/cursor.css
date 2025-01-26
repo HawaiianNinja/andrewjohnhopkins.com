@@ -9,10 +9,11 @@
   height: 20px;
   border: 2px solid #0ff0ff;
   position: fixed;
-  pointer-events: none;
   z-index: 9999;
   mix-blend-mode: difference;
-  transition: all 0.1s ease;
+  pointer-events: none;
+  left: var(--x, -100px);
+  top: var(--y, -100px);
   transform: translate(-50%, -50%);
 }
 
@@ -127,4 +128,4 @@
   background: var(--neon-primary);
   color: black;
   font-weight: bold;
-} 
+}

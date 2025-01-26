@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const CustomCursor: React.FC = () => {
-  const cursorRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
@@ -10,9 +9,8 @@ export const CustomCursor: React.FC = () => {
     setIsDesktop(mediaQuery.matches);
 
     const updateCursorPosition = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      }
+      document.documentElement.style.setProperty('--x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--y', `${e.clientY}px`);
     };
 
     if (mediaQuery.matches) {
@@ -23,17 +21,5 @@ export const CustomCursor: React.FC = () => {
 
   if (!isDesktop) return null;
 
-  return (
-    <div
-      ref={cursorRef}
-      className="custom-cursor"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        pointerEvents: 'none',
-        willChange: 'transform',
-      }}
-    />
-  );
+  return <div className="custom-cursor" />;
 }; 
