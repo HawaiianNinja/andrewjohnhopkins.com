@@ -54,7 +54,7 @@ const Weather: React.FC = () => {
       try {
         const endDate = new Date();
         const offset = endDate.getTimezoneOffset();
-        endDate.setHours(endDate.getHours() + offset/60);
+        endDate.setHours(endDate.getHours() + offset / 60);
         const startDate = new Date(endDate);
 
         switch (timeRange) {
@@ -121,9 +121,6 @@ const Weather: React.FC = () => {
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 retro-text-pink tracking-[0.2em]">
-          WEATHER STATION
-        </h1>
         <TimeRangeSelector value={timeRange} onChange={setTimeRange} />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <WeatherPanel

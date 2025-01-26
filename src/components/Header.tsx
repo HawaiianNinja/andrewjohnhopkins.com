@@ -10,9 +10,8 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ theme, onThemeChange }) => {
   const location = useLocation();
-  const currentPage = location.pathname === '/' ? 'Home' :
-    location.pathname.slice(1).charAt(0).toUpperCase() +
-    location.pathname.slice(2);
+  const currentPage = location.pathname === '/' ? '' :
+    location.pathname.slice(1).toUpperCase();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/50 border-b-2 border-primary
@@ -25,9 +24,11 @@ const Header: React.FC<HeaderProps> = ({ theme, onThemeChange }) => {
           >
             HOME
           </Link>
-          <span className="retro-text-cyan tracking-[0.2em] font-bold">
-            {currentPage}
-          </span>
+          {currentPage && (
+            <span className="retro-text-cyan tracking-[0.2em] font-bold">
+              {currentPage}
+            </span>
+          )}
         </div>
         <ThemeSwitcher currentTheme={theme} onThemeChange={onThemeChange} />
       </nav>

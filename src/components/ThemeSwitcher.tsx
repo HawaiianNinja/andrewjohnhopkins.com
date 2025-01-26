@@ -13,7 +13,7 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ currentTheme, onTh
         <div className="relative">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="px-4 py-2 border-2 border-primary rounded-md
+                className="px-4 py-2 border-2 border-primary rounded-md outline-none
                    [box-shadow:_0_0_10px_var(--primary),_inset_0_0_10px_var(--primary)]
                    hover:border-secondary hover:[box-shadow:_0_0_15px_var(--secondary),_inset_0_0_15px_var(--secondary)]
                    transition-all duration-300
@@ -40,7 +40,7 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ currentTheme, onTh
                                 onThemeChange(t.id);
                                 setIsOpen(false);
                             }}
-                            className={`w-full px-4 py-2 text-left tracking-[0.2em] font-bold
+                            className={`w-full px-4 py-2 text-left tracking-[0.2em] font-bold outline-none
                          transition-all duration-300
                          ${currentTheme === t.id
                                     ? 'retro-text-cyan [box-shadow:_0_0_10px_var(--secondary),_inset_0_0_10px_var(--secondary)]'
