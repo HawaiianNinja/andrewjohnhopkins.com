@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Theme } from '../types';
 import { CustomCursor } from './CustomCursor';
-import { ThemeSwitcher } from './ThemeSwitcher';
+import Header from './Header';
 import '../cursor.css';
 
 interface LayoutProps {
@@ -14,10 +14,12 @@ const Layout: React.FC<LayoutProps> = ({ theme, onThemeChange }) => {
   return (
     <>
       <CustomCursor />
-      <ThemeSwitcher currentTheme={theme} onThemeChange={onThemeChange} />
       <div className={`min-h-screen ${theme === "cyberpunk" ? "" : `theme-${theme}`}`}>
         <div className="scanline" />
-        <Outlet />
+        <Header theme={theme} onThemeChange={onThemeChange} />
+        <main className="pt-20 container mx-auto px-4">
+          <Outlet />
+        </main>
       </div>
     </>
   );

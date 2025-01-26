@@ -1,44 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { format } from 'date-fns';
-import { Clock, Calendar } from 'lucide-react';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Theme } from '../types';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
-export const Header: React.FC = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
+interface HeaderProps {
+  theme: Theme;
+  onThemeChange: (theme: Theme) => void;
+}
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000 * 60);
-    return () => clearInterval(timer);
-  }, []);
+const Header: React.FC<HeaderProps> = ({ theme, onThemeChange }) => {
+  const location = useLocation();
+  const currentPage = location.pathname === '/' ? 'Home' :
+    location.pathname.slice(1).charAt(0).toUpperCase() +
+    location.pathname.slice(2);
 
   return (
-    <header className="retro-panel mb-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-4xl retro-text-pink font-bold tracking-[0.2em]">
-          WEATHER STATION ALPHA
-        </h1>
-        <div className="flex gap-6">
-          <div className="flex items-center gap-2">
-            <Clock
-              className="w-6 h-6"
-              style={{ color: "var(--neon-secondary)" }}
-            />
-            <span className="retro-text-cyan text-xl">
-              {format(currentTime, "HH:mm:ss")}
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Calendar
-              className="w-6 h-6"
-              style={{ color: "var(--neon-secondary)" }}
-            />
-            <span className="retro-text-cyan text-xl">
-              {format(currentTime, "yyyy-MM-dd")}
-            </span>
-          </div>
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/50 border-b-2 border-primary
+                      [box-shadow:_0_0_10px_var(--primary)]">
+      <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="flex items-center gap-8">
+          <Link
+            to="/"
+            className="retro-text-pink hover:retro-text-cyan transition-colors tracking-[0.2em] font-bold text-lg"
+          >
+            HOME
+          </Link>
+          <span className="retro-text-cyan tracking-[0.2em] font-bold">
+            {currentPage}
+          </span>
         </div>
-      </div>
+        <ThemeSwitcher currentTheme={theme} onThemeChange={onThemeChange} />
+      </nav>
     </header>
   );
-}; 
+};
+
+export default Header; 
