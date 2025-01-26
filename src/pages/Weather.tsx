@@ -11,26 +11,27 @@ const TimeRangeSelector: React.FC<{
   onChange: (range: TimeRange) => void;
 }> = ({ value, onChange }) => (
   <div className="mb-8 flex flex-col items-center">
-    <h2 className="mb-4 text-2xl retro-text-pink font-bold tracking-[0.2em] uppercase">
+    <h2 className="mb-4 text-2xl retro-text-pink font-bold tracking-[0.2em] uppercase text-center">
       Time Range
     </h2>
-    <div className="inline-flex gap-4 p-2">
+    <div className="inline-flex flex-wrap justify-center gap-3 p-2">
       {["day", "week", "month", "year"].map((range) => (
         <button
           key={range}
           onClick={() => onChange(range as TimeRange)}
           className={`
-            relative px-6 py-2.5 
-            font-bold tracking-[0.2em]
+            relative px-4 py-2 
+            font-bold tracking-wider
             transition-all duration-200
             border-2 rounded-md
+            text-sm sm:text-base sm:px-6 sm:tracking-[0.2em]
             ${value === range
               ? "retro-text-pink border-primary animate-pulse-slow [box-shadow:_0_0_10px_var(--primary),_inset_0_0_10px_var(--primary)]"
               : "retro-text-cyan border-secondary hover:border-primary hover:[box-shadow:_0_0_5px_var(--primary)]"
             }
           `}
         >
-          {range}
+          {range.toUpperCase()}
         </button>
       ))}
     </div>

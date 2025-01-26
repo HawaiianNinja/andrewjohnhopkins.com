@@ -5,11 +5,6 @@ import { ThermometerSun, Map } from 'lucide-react';
 const Home: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6">
-      <h1 className="text-6xl font-bold mb-12 retro-text-pink tracking-[0.2em] text-center">
-        ANDREW'S DASHBOARD
-        <br />
-        <span className="retro-text-cyan">ALPHA</span>
-      </h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
         <Link
@@ -49,7 +44,7 @@ const Home: React.FC = () => {
         </Link>
       </div>
 
-      <div className="mt-12 text-center">
+      <div className="absolute bottom-8 left-0 right-0 text-center">
         <p className="retro-text-pink animate-pulse-slow tracking-[0.2em]">
           SYSTEM ONLINE
         </p>
