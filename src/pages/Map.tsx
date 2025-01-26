@@ -105,7 +105,7 @@ const Map: React.FC = () => {
                 <circle
                   cx={airport.coordinates[0]}
                   cy={airport.coordinates[1]}
-                  r={4}
+                  r={3}
                   fill="var(--neon-text)"
                   style={{
                     filter: `

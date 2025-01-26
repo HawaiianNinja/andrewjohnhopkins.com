@@ -40,10 +40,10 @@ const Home: React.FC = () => {
           <div className="flex flex-col items-center space-y-4">
             <Map size={48} className="retro-text-pink group-hover:retro-text-cyan transition-colors" />
             <h2 className="text-2xl font-bold tracking-[0.2em] retro-text-pink group-hover:retro-text-cyan transition-colors">
-              WEATHER MAP
+              NETWORK MAP
             </h2>
             <p className="text-center opacity-80 group-hover:retro-text-cyan transition-colors">
-              Interactive weather visualization
+              Real-time network latency map
             </p>
           </div>
         </Link>
