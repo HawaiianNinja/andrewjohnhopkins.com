@@ -14,10 +14,24 @@
   }
 
   @keyframes flicker {
-    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+
+    0%,
+    19.999%,
+    22%,
+    62.999%,
+    64%,
+    64.999%,
+    70%,
+    100% {
       opacity: 1;
     }
-    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+
+    20%,
+    21.999%,
+    63%,
+    63.999%,
+    65%,
+    69.999% {
       opacity: 0.8;
     }
   }
@@ -26,9 +40,11 @@
     0% {
       filter: brightness(100%) blur(0.5px);
     }
+
     50% {
       filter: brightness(120%) blur(1px);
     }
+
     100% {
       filter: brightness(100%) blur(0.5px);
     }
@@ -40,7 +56,7 @@
     @apply bg-black border-[3px] rounded-lg p-6;
     border-color: var(--neon-primary);
     background: linear-gradient(135deg, var(--background) 0%, color-mix(in srgb, var(--background) 80%, var(--neon-primary)) 100%);
-    box-shadow: 
+    box-shadow:
       0 0 10px color-mix(in srgb, var(--neon-primary) 30%, transparent),
       0 0 20px color-mix(in srgb, var(--neon-primary) 20%, transparent),
       0 0 30px color-mix(in srgb, var(--neon-primary) 10%, transparent),
@@ -52,45 +68,44 @@
     @apply border-2 rounded p-4;
     border-color: var(--neon-secondary);
     background: var(--screen);
-    box-shadow: 
+    box-shadow:
       0 0 10px color-mix(in srgb, var(--neon-secondary) 30%, transparent),
       0 0 20px color-mix(in srgb, var(--neon-secondary) 20%, transparent),
       inset 0 0 15px color-mix(in srgb, var(--neon-secondary) 20%, transparent);
-    background: linear-gradient(180deg, 
-      var(--screen) 0%,
-      color-mix(in srgb, var(--screen) 80%, var(--neon-secondary)) 50%,
-      var(--screen) 100%
-    );
+    background: linear-gradient(180deg,
+        var(--screen) 0%,
+        color-mix(in srgb, var(--screen) 80%, var(--neon-secondary)) 50%,
+        var(--screen) 100%);
   }
 
   .retro-text {
     @apply font-mono tracking-wider;
     color: var(--neon-text);
-    text-shadow: 
+    text-shadow:
       0 0 5px color-mix(in srgb, var(--neon-text) 70%, transparent),
       0 0 10px color-mix(in srgb, var(--neon-text) 50%, transparent),
       0 0 15px color-mix(in srgb, var(--neon-text) 30%, transparent);
-    animation: flicker 4s linear infinite;
+    animation: flicker var(--flicker-duration-1) linear infinite;
   }
 
   .retro-text-pink {
     @apply font-mono tracking-wider;
     color: var(--neon-primary);
-    text-shadow: 
+    text-shadow:
       0 0 5px color-mix(in srgb, var(--neon-primary) 70%, transparent),
       0 0 10px color-mix(in srgb, var(--neon-primary) 50%, transparent),
       0 0 15px color-mix(in srgb, var(--neon-primary) 30%, transparent);
-    animation: flicker 3s linear infinite;
+    animation: flicker var(--flicker-duration-2) linear infinite;
   }
 
   .retro-text-cyan {
     @apply font-mono tracking-wider;
     color: var(--neon-secondary);
-    text-shadow: 
+    text-shadow:
       0 0 5px color-mix(in srgb, var(--neon-secondary) 70%, transparent),
       0 0 10px color-mix(in srgb, var(--neon-secondary) 50%, transparent),
       0 0 15px color-mix(in srgb, var(--neon-secondary) 30%, transparent);
-    animation: flicker 5s linear infinite;
+    animation: flicker var(--flicker-duration-3) linear infinite;
   }
 
   .retro-button {
@@ -98,7 +113,7 @@
     border-color: var(--neon-primary);
     color: var(--neon-primary);
     background-color: color-mix(in srgb, var(--background) 95%, var(--neon-primary));
-    box-shadow: 
+    box-shadow:
       0 0 10px color-mix(in srgb, var(--neon-primary) 30%, transparent),
       0 0 20px color-mix(in srgb, var(--neon-primary) 20%, transparent),
       inset 0 0 10px color-mix(in srgb, var(--neon-primary) 10%, transparent);
@@ -131,12 +146,10 @@
 
   .scanline {
     @apply pointer-events-none fixed inset-0 z-50;
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(0, 0, 0, 0.05) 0.5%,
-      transparent 1%
-    );
+    background: repeating-linear-gradient(to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.05) 0.5%,
+        transparent 1%);
     animation: scanline 8s linear infinite;
     opacity: 0.3;
   }
@@ -145,6 +158,7 @@
     0% {
       transform: translateY(0);
     }
+
     100% {
       transform: translateY(100vh);
     }
@@ -152,13 +166,12 @@
 
   .retro-map-stroke {
     stroke: var(--neon-primary);
-    filter: 
-      drop-shadow(0 0 2px color-mix(in srgb, var(--neon-primary) 70%, transparent))
-      drop-shadow(0 0 4px color-mix(in srgb, var(--neon-primary) 50%, transparent))
-      drop-shadow(0 0 6 px color-mix(in srgb, var(--neon-primary) 30%, transparent));
-    animation: flicker 4s linear infinite;
+    filter:
+      drop-shadow(0 0 2px color-mix(in srgb, var(--neon-primary) 70%, transparent)) drop-shadow(0 0 4px color-mix(in srgb, var(--neon-primary) 50%, transparent)) drop-shadow(0 0 6 px color-mix(in srgb, var(--neon-primary) 30%, transparent));
+    animation: flicker var(--flicker-duration-4) linear infinite;
   }
 }
+
 .theme-cyberpunk {
   /* Default Cyberpunk Theme */
   --theme-name: 'cyberpunk';
