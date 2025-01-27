@@ -18,15 +18,12 @@ export const WeatherPanel: React.FC<WeatherPanelProps> = ({
 }) => {
   const getCurrentValue = (data: WeatherDataForRoom[], unit: string) => {
     if (data.length === 0) return "N/A";
-    // Get the most recent value from any room
-    const latestValues = data
-      .map(room => room.data[room.data.length - 1]?.value)
-      .filter(value => value !== undefined)
-      .map(value => parseFloat(value));
 
-    return latestValues.length > 0
-      ? `${latestValues.reduce((a, b) => Math.max(a, b)).toFixed(1)}${unit}`
-      : "N/A";
+    const livingRoomData = data.find(room => room.room === "living-room");
+    if (!livingRoomData || livingRoomData.data.length === 0) return "N/A";
+
+    const latestValue = livingRoomData.data[livingRoomData.data.length - 1].value;
+    return `${parseFloat(latestValue).toFixed(1)}${unit}`;
   };
 
   return (
