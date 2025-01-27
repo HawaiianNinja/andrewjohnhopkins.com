@@ -23,7 +23,7 @@ export const WeatherPanel: React.FC<WeatherPanelProps> = ({
       .map(room => room.data[room.data.length - 1]?.value)
       .filter(value => value !== undefined)
       .map(value => parseFloat(value));
-    
+
     return latestValues.length > 0
       ? `${latestValues.reduce((a, b) => Math.max(a, b)).toFixed(1)}${unit}`
       : "N/A";
@@ -41,7 +41,7 @@ export const WeatherPanel: React.FC<WeatherPanelProps> = ({
         </h2>
       </div>
       <div className="retro-screen">
-        <div className="text-6xl font-bold mb-4 retro-text text-center">
+        <div className="text-4xl md:text-6xl font-bold mb-4 retro-text text-center">
           {getCurrentValue(data, unit)}
         </div>
         <WeatherChart data={data} />
