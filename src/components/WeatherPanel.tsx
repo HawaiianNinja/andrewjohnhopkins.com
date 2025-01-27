@@ -20,10 +20,15 @@ export const WeatherPanel: React.FC<WeatherPanelProps> = ({
     if (data.length === 0) return "N/A";
 
     const livingRoomData = data.find(room => room.room === "living-room");
-    if (!livingRoomData || livingRoomData.data.length === 0) return "N/A";
+    const bedroomData = data.find(room => room.room === "bedroom");
 
-    const latestValue = livingRoomData.data[livingRoomData.data.length - 1].value;
-    return `${parseFloat(latestValue).toFixed(1)}${unit}`;
+    if (!livingRoomData?.data.length || !bedroomData?.data.length) return "N/A";
+
+    const latestLivingValue = parseFloat(livingRoomData.data[livingRoomData.data.length - 1].value);
+    const latestBedroomValue = parseFloat(bedroomData.data[bedroomData.data.length - 1].value);
+    const average = (latestLivingValue + latestBedroomValue) / 2;
+
+    return `${average.toFixed(1)}${unit}`;
   };
 
   return (

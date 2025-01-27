@@ -116,7 +116,7 @@ const Weather: React.FC = () => {
     };
 
     fetchSensorData();
-  }, [timeRange]);
+  }, [timeRange]); // Add timeRange as dependency since it affects the fetch parameters
 
   return (
     <div className="min-h-screen p-6">
@@ -136,22 +136,16 @@ const Weather: React.FC = () => {
             unit="%"
           />
           <WeatherPanel
-            title="PRESSURE"
-            data={pressure}
-            icon={Gauge}
-            unit=" hPa"
+            title="CO₂"
+            data={co2}
+            icon={Wind}
+            unit=" ppm"
           />
           <WeatherPanel
             title="LIGHT"
             data={lux}
             icon={Sun}
             unit=" lux"
-          />
-          <WeatherPanel
-            title="CO₂"
-            data={co2}
-            icon={Wind}
-            unit=" ppm"
           />
           <WeatherPanel
             title="PM 1.0"
@@ -170,6 +164,12 @@ const Weather: React.FC = () => {
             data={pm100}
             icon={Atom}
             unit=" µg/m³"
+          />
+          <WeatherPanel
+            title="PRESSURE"
+            data={pressure}
+            icon={Gauge}
+            unit=" hPa"
           />
         </div>
       </div>
