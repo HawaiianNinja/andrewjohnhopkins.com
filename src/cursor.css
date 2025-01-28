@@ -12,9 +12,9 @@
   z-index: 9999;
   mix-blend-mode: difference;
   pointer-events: none;
-  left: var(--x, -100px);
-  top: var(--y, -100px);
-  transform: translate(-50%, -50%);
+  transform: translate(-10px, -10px);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .custom-cursor::after {
@@ -28,6 +28,7 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
   box-shadow: 0 0 8px #ff00ff;
+  will-change: transform;
 }
 
 .theme-switcher {
@@ -35,6 +36,8 @@
   top: 1rem;
   right: 1rem;
   z-index: 1000;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .theme-menu {
@@ -59,6 +62,8 @@
   letter-spacing: 0.1em;
   min-width: 150px;
   justify-content: space-between;
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
 }
 
 .theme-toggle:hover {
@@ -69,6 +74,7 @@
 .theme-icon {
   font-size: 0.8em;
   transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 .theme-options {
@@ -88,6 +94,7 @@
   backdrop-filter: blur(10px);
   visibility: hidden;
   height: 0;
+  will-change: transform, opacity, height;
 }
 
 .theme-menu:hover .theme-options,
@@ -116,6 +123,7 @@
   transition: all 0.2s ease;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  transform: translateZ(0);
 }
 
 .theme-option:hover {

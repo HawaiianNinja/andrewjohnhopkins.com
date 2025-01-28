@@ -61,6 +61,8 @@
       0 0 20px color-mix(in srgb, var(--neon-primary) 20%, transparent),
       0 0 30px color-mix(in srgb, var(--neon-primary) 10%, transparent),
       inset 0 0 30px color-mix(in srgb, var(--neon-primary) 10%, transparent);
+    will-change: filter;
+    transform: translateZ(0);
     animation: glow 4s ease-in-out infinite;
   }
 
@@ -78,7 +80,9 @@
         var(--screen) 100%);
   }
 
-  .retro-text {
+  .retro-text,
+  .retro-text-pink,
+  .retro-text-cyan {
     @apply font-mono tracking-wider;
     color: var(--neon-text);
     text-shadow:
@@ -86,10 +90,12 @@
       0 0 10px color-mix(in srgb, var(--neon-text) 50%, transparent),
       0 0 15px color-mix(in srgb, var(--neon-text) 30%, transparent);
     animation: flicker var(--flicker-duration-1) linear infinite;
+    will-change: opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
 
   .retro-text-pink {
-    @apply font-mono tracking-wider;
     color: var(--neon-primary);
     text-shadow:
       0 0 5px color-mix(in srgb, var(--neon-primary) 70%, transparent),
@@ -99,7 +105,6 @@
   }
 
   .retro-text-cyan {
-    @apply font-mono tracking-wider;
     color: var(--neon-secondary);
     text-shadow:
       0 0 5px color-mix(in srgb, var(--neon-secondary) 70%, transparent),
@@ -150,6 +155,8 @@
         transparent 0%,
         rgba(0, 0, 0, 0.05) 0.5%,
         transparent 1%);
+    will-change: transform;
+    transform: translateZ(0);
     animation: scanline 8s linear infinite;
     opacity: 0.3;
   }

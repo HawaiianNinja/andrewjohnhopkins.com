@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 export const CustomCursor: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number>();
 
   useEffect(() => {
     // Check if device has fine pointer (mouse)
@@ -9,17 +11,33 @@ export const CustomCursor: React.FC = () => {
     setIsDesktop(mediaQuery.matches);
 
     const updateCursorPosition = (e: MouseEvent) => {
-      document.documentElement.style.setProperty('--x', `${e.clientX}px`);
-      document.documentElement.style.setProperty('--y', `${e.clientY}px`);
+      if (!cursorRef.current) return;
+
+      // Cancel any pending animation frame
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+
+      // Schedule the update for the next frame
+      rafRef.current = requestAnimationFrame(() => {
+        if (cursorRef.current) {
+          cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        }
+      });
     };
 
     if (mediaQuery.matches) {
-      window.addEventListener("mousemove", updateCursorPosition);
-      return () => window.removeEventListener("mousemove", updateCursorPosition);
+      window.addEventListener("mousemove", updateCursorPosition, { passive: true });
+      return () => {
+        window.removeEventListener("mousemove", updateCursorPosition);
+        if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+        }
+      };
     }
   }, []);
 
   if (!isDesktop) return null;
 
-  return <div className="custom-cursor" />;
+  return <div ref={cursorRef} className="custom-cursor" />;
 }; 
